@@ -1,71 +1,71 @@
-/* body {
-	background-color: #6DC4F4;
-}h1 { 
-     color:white;
- 
-} */
-
+/* styling accordion container*/
 .container {
   width: 80%;
   max-width: 600px;
   margin: 50px auto;
 }
-
-button.accordion {
+/* accordion button*/
+.accordion-trigger {
   width: 100%;
   background-color: whitesmoke;
-  border: none;
-  outline: none;
-  text-align: left;
-  padding: 15px 20px;
-  font-size: 18px;
   color: #333;
+  padding: 15px 20px; 
+  text-align: left;
+  font-size: 18px;
+  font-weight: normal; 
+  border: none;
   cursor: pointer;
   transition: background-color 0.2s linear;
+  display: flex;
+  align-items: center; 
 }
 
-button.accordion:after {
+.accordion-trigger:after {
   font-family: FontAwesome;
-  content: "\f150";
-  font-family: "fontawesome";
+  content: "\f150"; 
   font-size: 18px;
-  float: right;
+  margin-left: auto; /* helps with right alignment */
+  transition: transform 0.2s ease;
 }
 
-button.accordion.is-open:after {
-  content: "\f151";
+.accordion-trigger[aria-expanded="true"]:after {
+  content: "\f151"; 
 }
 
-button.accordion:hover,
-button.accordion.is-open {
+.accordion-trigger:hover,
+.accordion-trigger[aria-expanded="true"] {
   background-color: #ddd;
 }
 
-.accordion-content {
-  background-color: white;
-  border-left: 1px solid whitesmoke;
-  border-right: 1px solid whitesmoke;
-  padding: 0 20px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-in-out;
+.accordion-panel {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  display: block;
+  margin-top: 10px;
 }
 
-/* Add focus styles */
-button.accordion:focus {
-  outline: 3px solid #1E88E5; /* High-contrast color for better focus visibility */
-  outline-offset: 2px;
-  background-color: #E3F2FD;  /* Light background ensuring at least 4.5:1 contrast ratio */
-  box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
+.accordion-panel[hidden] /* helps with hidding the panel*/{
+  display: none;
 }
 
-button.accordion:focus-visible {
-  outline: 3px solid #1565C0; /* Slightly darker, high contrast for focus-visible */
-  outline-offset: 3px;
+
+.accordion-trigger[aria-expanded="true"] {
+  background-color: #ddd;
 }
 
-/* Maintain hover states for visual consistency */
-button.accordion:hover {
-  background-color: #E0E0E0; /* Maintain contrast with text */
+
+.accordion-title {
+  display: inline-block;
+  flex-grow: 1;
 }
 
+.accordion-icon {
+  margin-left: 10px;
+}
+
+h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
