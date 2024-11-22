@@ -8,23 +8,25 @@
   5. set the max-height based on whether the current value of the max-height css property. If the max-height is currently 0 (if the page has just been visited for the first time) or null (if it has been toggled once already) which means that it is closed, you will give it an actual value so the content will be shown; if not then that means the max-height currently has a value and you can set it back to null to close it.
   6. If the accordion is closed we set the max-height of the currently hidden text inside the accordion from 0 to the scroll height of the content inside the accordion. The scroll height refers to the height of an html element in pixels. For this specific example, we are talking about the height of the div with the class accordion-content with all of its nested ptags
 */
+document.addEventListener("DOMContentLoaded", function () {
+  const accordionBtns = document.querySelectorAll(".accordion-trigger");
+  
+//helps with the accordion behaviour 
+  accordionBtns.forEach((accordion) => {
+    accordion.addEventListener("click", function () {
 
-const accordionBtns = document.querySelectorAll(".accordion");
+      
+      const expanded = this.getAttribute("aria-expanded") === "true" || false;
+      this.setAttribute("aria-expanded", !expanded);
 
-accordionBtns.forEach((accordion) => {
-  accordion.onclick = function () {
-    this.classList.toggle("is-open");
-
-    let content = this.nextElementSibling;
-    console.log(content);
-
-    if (content.style.maxHeight) {
-      //this is if the accordion is open
-      content.style.maxHeight = null;
-    } else {
-      //if the accordion is currently closed
-      content.style.maxHeight = content.scrollHeight + "px";
-      console.log(content.style.maxHeight);
-    }
-  };
+      const content = document.getElementById(this.getAttribute("aria-controls"));
+      
+      // show or hide the content 
+      if (!expanded) {
+        content.removeAttribute("hidden");  
+      } else {
+        content.setAttribute("hidden", "");  
+      }
+    });
+  });
 });
